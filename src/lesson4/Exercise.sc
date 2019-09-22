@@ -45,3 +45,19 @@ noon2.hours
 noon2.minutes = 30 // call the method minutes_ - LOL
 noon2
 // noon2.minutes = -999 // IllegalArgumentException
+
+
+
+// PART 3 - operators
+class Time4(val hours: Int, val minutes: Int) {
+  def this(h: Int) { this(h, 0) }
+  if (hours < 0 || hours >= 24 || minutes < 0 || minutes >= 60)  throw new IllegalArgumentException
+  def -(other: Time4) = hours * 60 + minutes - other.hours * 60 - other.minutes
+  def <(other: Time4): Boolean = this - other < 0
+  override def toString: String = f"${hours}:${minutes}%02d"
+}
+object Time4 {
+  def apply(h: Int, m: Int) = new Time4(h, m)
+}
+Time4(9, 0) - Time4(12, 30)
+Time4(9, 0) < Time4(12, 30)
